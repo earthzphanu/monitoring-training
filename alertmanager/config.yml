@@ -10,6 +10,6 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#test-prometheus'
+  - channel: '#ntl-training'
     text: 'alerted'
     send_resolved: true
