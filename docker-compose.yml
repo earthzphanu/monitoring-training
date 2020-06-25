@@ -1,0 +1,37 @@
+version: '3'
+services:
+  prometheus:
+    image: "prom/prometheus"
+    volumes:
+      - "./prometheus/:/etc/prometheus/"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "19090:9090"
+    restart: always
+  node-exporter:
+      image: prom/node-exporter
+      ports:
+        - '9100:9100'
+      volumes:
+        - '/proc:/host/proc'
+        - '/sys:/host/sys'
+        - '/:/rootfs'
+      command:
+        - '--path.procfs=/host/proc'
+        - '--path.sysfs=/host/sys'
+        - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+      restart: always
+  alertmanager:
+    image: prom/alertmanager:v0.19.0
+    ports: 
+      - "9093:9093"
+    volumes:
+      - './alertmanager/:/etc/alertmanager/'
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    restart: always

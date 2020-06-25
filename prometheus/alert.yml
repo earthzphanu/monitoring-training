@@ -1,0 +1,12 @@
+groups:
+- name: memory peak
+  rules:
+  - alert: memory peak
+    expr: node_memory_Active_bytes > 1
+    for: 10s
+    labels:
+      severity: high
+    annotations:
+      description: 'Instance is online'
+      summary: 'Memory usage is too high  {{ $value }}'
+      valuesza: '{{ humanize $value }}'

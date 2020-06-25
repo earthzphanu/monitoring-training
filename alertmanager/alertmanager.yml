@@ -1,0 +1,15 @@
+global:
+  resolve_timeout: 5m
+  slack_api_url: '<SLACK_API_WEBHOOK>'
+route:
+  group_by: ['job']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 5s
+  receiver: 'slack-notifications'
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#test-prometheus'
+    text: 'alerted'
+    send_resolved: true
