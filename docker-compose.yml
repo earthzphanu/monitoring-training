@@ -10,7 +10,7 @@ services:
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
     ports:
-      - "19090:9090"
+      - "8080:9090"
     restart: always
   node-exporter:
       image: prom/node-exporter
