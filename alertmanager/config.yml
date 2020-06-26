@@ -11,5 +11,5 @@ receivers:
 - name: 'slack-notifications'
   slack_configs:
   - channel: '#ntl-training'
-    text: 'alerted'
+    text: 'alerted from UserXX'
     send_resolved: true
