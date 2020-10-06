@@ -35,7 +35,7 @@ services:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
     restart: always
-  # grafana:
-  #   image: grafana/grafana
-  #   ports:
-  #     - "8080:3000"
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
